@@ -1,0 +1,19 @@
+.transaction-list {
+    margin-top: 20px;
+  }
+  
+.transaction-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transaction-list th,
+.transaction-list td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.transaction-list th {
+  background-color: #f0f0f0;
+}
