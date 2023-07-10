@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from'react';
+import { fetchTransactionData } from './api/fetchTransctionData';
+import { calculateMonthlyPoints } from './utils/CalculateMonthlyPoints';
+import TransactionList from './components/TransactionList/TransactionList';
+import MonthlyPointsTotal from './components/MonthlyPointsTotal/MonthlyPointsTotal';
 import './App.css';
 
 function App() {
+
+  const [transactionData, setTransactionData] = useState([]);
+  const [monthlyTotals, setMonthlyTotals] = useState([]);
+
+  useEffect(() => {
+    const getTrasactionData = async () => {
+      try {
+        const data = await fetchTransactionData();
+        setTransactionData(data);
+      } catch (error) {
+        alert(error);
+      }
+    };
+    getTrasactionData();
+  }, []);
+
+  useEffect(() => {
+    const calculateMonthlyPointsTotal = () => {
+      const monthlyPoints = calculateMonthlyPoints(transactionData);
+      setMonthlyTotals(monthlyPoints);
+    };
+    calculateMonthlyPointsTotal();
+  }, [transactionData]);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <TransactionList transactions={transactionData} />
+      <MonthlyPointsTotal monthlyTotals={monthlyTotals} />
     </div>
   );
 }
