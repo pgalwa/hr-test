@@ -1,0 +1,20 @@
+.monthly-points-total {
+    margin-top: 20px;
+  }
+  
+.monthly-points-total table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.monthly-points-total th,
+.monthly-points-total td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.monthly-points-total th {
+  background-color: #f0f0f0;
+}
+  
