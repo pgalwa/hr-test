@@ -9,12 +9,15 @@ function App() {
 
   const [transactionData, setTransactionData] = useState([]);
   const [monthlyTotals, setMonthlyTotals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getTrasactionData = async () => {
       try {
         const data = await fetchTransactionData();
         setTransactionData(data);
+        console.log(data);
+        setIsLoading(false);
       } catch (error) {
         alert(error);
       }
@@ -33,8 +36,14 @@ function App() {
 
   return (
     <div className="app">
-      <TransactionList transactions={transactionData} />
-      <MonthlyPointsTotal monthlyTotals={monthlyTotals} />
+      {isLoading ? (
+        <div className="spinner">Loading...</div>
+      ) : (<>
+        <TransactionList transactionData={transactionData} />
+        <MonthlyPointsTotal monthlyTotals={monthlyTotals} />
+      </>
+      )}
+      
     </div>
   );
 }

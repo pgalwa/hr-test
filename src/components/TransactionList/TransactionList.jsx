@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-const TransactionList = ({ transactions }) => {
+const TransactionList = ({ transactionData }) => {
   return (
     <div className="transaction-list">
       <h2>Transaction List</h2>
@@ -14,7 +14,7 @@ const TransactionList = ({ transactions }) => {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction, index) => (
+          {transactionData?.map((transaction, index) => (
             <tr key={index}>
               <td>{transaction.customerId}</td>
               <td>${transaction.amount}</td>
